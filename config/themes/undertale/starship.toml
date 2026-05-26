@@ -1,0 +1,61 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║  UNDERTALE STARSHIP PROMPT — Strict 1-Bit Monochrome    ║
+# ║  No background colors, no truecolor, pure white text    ║
+# ╚══════════════════════════════════════════════════════════╝
+
+add_newline = true
+
+# Stripped-down format — no colored pills, just raw text
+format = """
+$directory\
+$git_branch\
+$nodejs\
+$c\
+$java\
+$line_break\
+$character"""
+
+right_format = """
+$status\
+$cmd_duration"""
+
+[directory]
+style = "white bold"
+format = "[$path ]($style)"
+truncation_length = 3
+truncate_to_repo = false
+
+[status]
+disabled = false
+format = "$symbol"
+success_symbol = "[OK ](white bold)"
+symbol = "[ERR $status ](white bold)"
+
+[cmd_duration]
+min_time = 1
+style = "white bold"
+format = "[$duration ]($style)"
+
+[git_branch]
+symbol = ""
+style = "white bold"
+format = "[$symbol$branch ](white bold)"
+
+[nodejs]
+symbol = "node "
+style = "white bold"
+format = "[$symbol$version ]($style)"
+
+[c]
+symbol = "c "
+style = "white bold"
+format = "[$symbol$version ]($style)"
+
+[java]
+symbol = "java "
+style = "white bold"
+format = "[$symbol$version ]($style)"
+
+[character]
+success_symbol = "[>](white bold)"
+error_symbol = "[>](white bold)"

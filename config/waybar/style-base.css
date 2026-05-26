@@ -1,0 +1,449 @@
+/* ============================================================
+ * Waybar — Cyberpunk Floating Islands
+ * Theme: Catppuccin Mocha × Neon Glassmorphism
+ * Philosophy: Bar IS the wallpaper. Modules float above it.
+ * ============================================================ */
+
+/* ── Color palette loaded from theme file ─────────────────── */
+
+/* ── Reset ───────────────────────────────────────────────── */
+* {
+  border:         none;
+  border-radius: 0;
+  font-family:   'CaskaydiaCove Nerd Font', 'JetBrainsMono Nerd Font', monospace;
+  font-size:     12px;
+  min-height:    0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   THE BAR — completely invisible, zero footprint
+   Wallpaper breathes through; only the islands are visible
+   ══════════════════════════════════════════════════════════ */
+#waybar {
+  background: transparent;
+  border:      none;
+  box-shadow:  none;
+  min-height:  34px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SHARED ISLAND BASE
+   Dark frosted glass — blurs the wallpaper behind each pill
+   Thin neon-white micro-border for definition without weight
+   ══════════════════════════════════════════════════════════ */
+#custom-launcher, #workspaces, #window, #tray, #backlight, #clock, #battery,
+#pulseaudio, #network, #mpd, #cpu, #memory, #disk, #temperature,
+#custom-music, #custom-updates, #custom-nordvpn, #custom-notifications,
+#custom-power, #custom-custom, #custom-cycle_wall, #custom-clipboard,
+#custom-ss, #custom-salah, #custom-weather, #custom-todo {
+  background-color: rgba(10, 10, 18, 0.6);
+  border:           1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  color:         @text;
+  border-radius: 10px;
+  padding:       0 12px;
+  margin-top:    5px;
+  margin-bottom: 5px;
+  margin-right:  5px;
+  min-height:    22px;
+  transition:    all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Universal hover — cyan neon lift */
+#custom-launcher:hover, #workspaces:hover, #clock:hover,
+#custom-updates:hover, #custom-clipboard:hover, #custom-ss:hover,
+#custom-power:hover, #custom-notifications:hover, #custom-todo:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow:
+    0 2px 20px rgba(0, 229, 255, 0.14),
+    inset 0 1px 0 rgba(0, 229, 255, 0.07);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LAUNCHER — #M, neon pink, floats top-left
+   ══════════════════════════════════════════════════════════ */
+#custom-launcher {
+  font-size:      22px;
+  font-weight:    900;
+  font-style:     italic;
+  letter-spacing: -2px;
+  color:          @neon-pink;
+  text-shadow:
+    0 0 10px rgba(230, 69, 123, 0.9),
+    0 0 24px rgba(230, 69, 123, 0.4);
+  background:    rgba(230, 69, 123, 0.09);
+  border-color:  rgba(230, 69, 123, 0.22);
+  padding:       0 14px;
+  margin-left:   6px;
+}
+
+#custom-launcher:hover {
+  background:   rgba(230, 69, 123, 0.18);
+  border-color: rgba(230, 69, 123, 0.45);
+  text-shadow:
+    0 0 14px rgba(230, 69, 123, 1),
+    0 0 30px rgba(230, 69, 123, 0.55);
+  box-shadow: 0 0 22px rgba(230, 69, 123, 0.22);
+}
+
+/* ══════════════════════════════════════════════════════════
+   WORKSPACES — cyan active pill
+   ══════════════════════════════════════════════════════════ */
+#workspaces { padding: 0 3px; }
+
+#workspaces button {
+  color:         @overlay1;
+  background:    transparent;
+  font-weight:   800;
+  font-size:     13px;
+  border-radius: 8px;
+  min-width:     28px;
+  padding:       0 2px;
+  margin:        0 2px;
+  transition:    all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#workspaces button.active {
+  color:      @crust;
+  background: linear-gradient(135deg, #00e5ff, rgba(0, 180, 216, 0.92));
+  box-shadow:
+    0 0 10px rgba(0, 229, 255, 0.6),
+    0 0 22px rgba(0, 229, 255, 0.22);
+  text-shadow: none;
+  min-width:   32px;
+}
+
+#workspaces button:hover:not(.active) {
+  background: rgba(0, 229, 255, 0.13);
+  color:      @neon-cyan;
+}
+
+#workspaces button.urgent {
+  background: rgba(255, 0, 60, 0.22);
+  color:      @neon-red;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════
+   WINDOW TITLE
+   ══════════════════════════════════════════════════════════ */
+#window {
+  color:          @subtext0;
+  font-style:     italic;
+  font-size:      11.5px;
+  padding:        0 14px;
+  letter-spacing: 0.3px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MUSIC MODULE — left half of merged pill
+   ══════════════════════════════════════════════════════════ */
+#custom-music {
+  padding:                    0 10px 0 14px;
+  border-top-right-radius:    0;
+  border-bottom-right-radius: 0;
+  border-right:               none;
+  margin-right:               0;
+}
+
+#custom-music.Paused,
+#custom-music.Stopped {
+  color:        @overlay0;
+  background:   rgba(10, 10, 18, 0.65);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+#custom-music.Playing {
+  background: linear-gradient(
+    135deg,
+    rgba(230, 69, 123, 0.16) 0%,
+    rgba(90, 50, 130, 0.13) 100%
+  );
+  border-color: rgba(230, 69, 123, 0.28);
+  color:        #f0c0d4;
+  font-weight:  600;
+  box-shadow:
+    0 0 16px rgba(230, 69, 123, 0.20),
+    inset 0 1px 0 rgba(230, 69, 123, 0.10);
+  animation: music-pulse 2.8s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CAVA — fully transparent, ghost bars over wallpaper
+   ══════════════════════════════════════════════════════════ */
+#custom-cava {
+  background:    transparent;
+  border:        none;
+  box-shadow:    none;
+  text-shadow:   none;
+
+  color:          @neon-pink;
+  font-family:    'JetBrainsMono Nerd Font', monospace;
+  font-size:      19px;
+  letter-spacing: 1.5px;
+
+  padding:        0 10px 0 4px;
+  margin-left:    0;
+  margin-right:   5px;
+  margin-top:     5px;
+  margin-bottom:  5px;
+  min-height:     22px;
+}
+
+/* GTK FIX: Separated keyframes percentages */
+@keyframes music-pulse {
+  0% {
+    box-shadow: 0 0 14px rgba(230, 69, 123, 0.20), inset 0 1px 0 rgba(230, 69, 123, 0.10);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(230, 69, 123, 0.38), inset 0 1px 0 rgba(230, 69, 123, 0.15);
+  }
+  100% {
+    box-shadow: 0 0 14px rgba(230, 69, 123, 0.20), inset 0 1px 0 rgba(230, 69, 123, 0.10);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   SYSTEM STATS PILL  cpu | mem | temp | disk
+   ══════════════════════════════════════════════════════════ */
+#cpu, #memory, #temperature, #disk {
+  border-radius: 0;
+  margin-right:  0;
+  padding:       0 9px;
+  box-shadow:    none;
+  border-left:   none;
+  border-right:  none;
+}
+
+#cpu {
+  color:         @neon-cyan;
+  text-shadow:   0 0 8px rgba(0, 229, 255, 0.45);
+  border-top-left-radius:    10px;
+  border-bottom-left-radius: 10px;
+  padding-left:  12px;
+  border-left:   1px solid rgba(0, 229, 255, 0.18);
+  border-top:    1px solid rgba(0, 229, 255, 0.18);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.18);
+  border-right:  1px solid rgba(255, 255, 255, 0.05);
+}
+
+#memory {
+  color:         @sapphire;
+  border-top:    1px solid rgba(0, 229, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+  border-right:  1px solid rgba(255, 255, 255, 0.05);
+}
+
+#temperature {
+  color:         @blue;
+  border-top:    1px solid rgba(0, 229, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+  border-right:  1px solid rgba(255, 255, 255, 0.05);
+}
+
+#temperature.critical {
+  color:       @neon-red;
+  text-shadow: 0 0 8px rgba(255, 0, 60, 0.65);
+}
+
+#disk {
+  color:         @peach;
+  border-top-right-radius:    10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 12px;
+  margin-right:  5px;
+  border-right:  1px solid rgba(255, 255, 255, 0.06);
+  border-top:    1px solid rgba(0, 229, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+  box-shadow:    0 2px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* ══════════════════════════════════════════════════════════
+   HARDWARE PILL  net | audio | backlight | battery
+   ══════════════════════════════════════════════════════════ */
+#network, #pulseaudio, #backlight, #battery {
+  border-radius: 0;
+  margin-right:  0;
+  padding:       0 9px;
+  box-shadow:    none;
+  border-left:   none;
+  border-right:  none;
+}
+
+#network {
+  color:         @sapphire;
+  border-top-left-radius:    10px;
+  border-bottom-left-radius: 10px;
+  padding-left:  12px;
+  border-left:   1px solid rgba(255, 255, 255, 0.06);
+  border-top:    1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right:  1px solid rgba(255, 255, 255, 0.04);
+}
+#network.disconnected { color: @overlay0; }
+
+#pulseaudio {
+  color:         @mauve;
+  border-top:    1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right:  1px solid rgba(255, 255, 255, 0.04);
+}
+#pulseaudio.muted { color: @overlay0; }
+
+#backlight {
+  color:         @teal;
+  border-top:    1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right:  1px solid rgba(255, 255, 255, 0.04);
+}
+
+#battery {
+  color:         @green;
+  border-top-right-radius:    10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 12px;
+  margin-right:  5px;
+  border-right:  1px solid rgba(255, 255, 255, 0.06);
+  border-top:    1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:    0 2px 14px rgba(0, 0, 0, 0.3);
+}
+#battery.charging                { color: @green; }
+#battery.warning:not(.charging)  { color: @yellow; }
+#battery.critical:not(.charging) {
+  color:       @neon-red;
+  text-shadow: 0 0 8px rgba(255, 0, 60, 0.7);
+  animation:   blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CLOCK
+   ══════════════════════════════════════════════════════════ */
+#clock {
+  color:          @flamingo;
+  font-weight:    600;
+  font-size:      12px;
+  letter-spacing: 0.5px;
+  padding:        0 14px;
+  background:     rgba(242, 205, 205, 0.05);
+  border-color:   rgba(242, 205, 205, 0.10);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SALAH — unique sapphire island
+   ══════════════════════════════════════════════════════════ */
+#custom-salah {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 28, 0.85) 0%,
+    rgba(16, 24, 44, 0.82) 100%
+  );
+  border:        1px solid rgba(116, 199, 236, 0.18);
+  color:         @sapphire;
+  font-weight:   600;
+  border-radius: 10px;
+  padding:       0 13px;
+  margin:        5px 5px;
+  box-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.4),
+    0 0 16px rgba(116, 199, 236, 0.07);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TODO
+   ══════════════════════════════════════════════════════════ */
+#custom-todo { color: @subtext1; font-weight: 600; }
+
+#custom-todo.active {
+  color:        @neon-red;
+  /* Dark, frosted glass with a very slight red tint for readability */
+  background:   rgba(15, 5, 8, 0.85); 
+  border-color: rgba(255, 0, 60, 0.4);
+  box-shadow:   0 2px 14px rgba(255, 0, 60, 0.25);
+  text-shadow:  0 0 8px rgba(255, 0, 60, 0.6);
+}
+
+/* ══════════════════════════════════════════════════════════
+   MISC
+   ══════════════════════════════════════════════════════════ */
+#custom-updates        { color: @sky; }
+#custom-updates:hover  { background: rgba(137, 220, 235, 0.09); border-color: rgba(137, 220, 235, 0.2); }
+
+#custom-clipboard       { color: @mauve; }
+#custom-clipboard:hover { background: rgba(203, 166, 247, 0.09); border-color: rgba(203, 166, 247, 0.2); }
+
+#custom-ss        { color: @pink; }
+#custom-ss:hover  { background: rgba(245, 194, 231, 0.09); border-color: rgba(245, 194, 231, 0.2); }
+
+#custom-weather { color: @yellow; }
+
+#custom-nordvpn              { color: @overlay0; }
+#custom-nordvpn.connected    { color: @green; background: rgba(166, 227, 161, 0.08); border-color: rgba(166, 227, 161, 0.2); }
+#custom-nordvpn.disconnected { color: @overlay0; }
+
+/* ══════════════════════════════════════════════════════════
+   NOTIFICATIONS
+   ══════════════════════════════════════════════════════════ */
+#custom-notifications        { color: @mauve; padding: 0 13px; }
+#custom-notifications:hover  { background: rgba(203, 166, 247, 0.09); border-color: rgba(203, 166, 247, 0.2); }
+#custom-notifications.dnd-none,
+#custom-notifications.none   { color: @overlay0; }
+
+/* ══════════════════════════════════════════════════════════
+   POWER — rightmost, red neon
+   ══════════════════════════════════════════════════════════ */
+#custom-power {
+  color:         @neon-red;
+  padding:       0 13px;
+  border-radius: 10px;
+  margin-right:  6px;
+  background:    rgba(255, 0, 60, 0.07);
+  border-color:  rgba(255, 0, 60, 0.16);
+}
+#custom-power:hover {
+  background:   rgba(255, 0, 60, 0.18);
+  border-color: rgba(255, 0, 60, 0.42);
+  box-shadow:   0 0 20px rgba(255, 0, 60, 0.24);
+  text-shadow:  0 0 10px rgba(255, 0, 60, 0.85);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TRAY
+   ══════════════════════════════════════════════════════════ */
+#tray {
+  color:         @subtext0;
+  padding:       0 12px;
+  background:    rgba(10, 10, 18, 0.72);
+  border:        1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin-top:    5px;
+  margin-bottom: 5px;
+  margin-right:  5px;
+}
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: rgba(243, 139, 168, 0.14);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOOLTIP
+   ══════════════════════════════════════════════════════════ */
+tooltip {
+  background:    rgba(8, 8, 16, 0.97);
+  border:        1px solid rgba(0, 229, 255, 0.14);
+  border-radius: 10px;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 229, 255, 0.05);
+  color:   @text;
+  padding: 5px 10px;
+}
+tooltip label { color: @subtext1; font-size: 12px; }

@@ -1,0 +1,119 @@
+/* ============================================================
+   mac-music.rasi — Modern Dynamic Island Music Player
+   Merged with your custom surface styling & colors!
+   ============================================================ */
+
+configuration {
+    modi:                        "dmenu";
+    show-icons:                  false;
+    display-dmenu:               "";
+    font:                        "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    bg:             #0d0d14f0;
+    bg-alt:         #13131efa;
+    surface:        #1a1a2a;
+    surface-hover:  #222235;
+    accent:         #e6457b;
+    accent-dim:     #e6457b55;
+    text:           #cdd6f4;
+    subtext:        #a6adc8;
+    border-col:     #e6457b44;
+    transparent:    #00000000;
+}
+
+window {
+    transparency:                "real";
+    background-color:            @bg;
+    border:                      1px solid;
+    border-color:                @border-col;
+    border-radius:               18px;
+    width:                       520px;  /* Widened to fit the horizontal split */
+    x-offset:                    0;
+    y-offset:                    56px;   /* Drops cleanly below your 48px Waybar */
+    location:                    north;
+    anchor:                      north;
+    padding:                     0px;
+}
+
+mainbox {
+    background-color:            @transparent;
+    orientation:                 horizontal; /* Forces the split-screen look */
+    children:                    [ inputbar, listbox ];
+    padding:                     15px;
+    spacing:                     20px;
+}
+
+/* ── Left Side: Album Art ── */
+inputbar {
+    expand:                      false;
+    width:                       130px;
+    background-image:            url("/tmp/rofi-music-cover.png", width);
+    border-radius:               12px;
+    children:                    [ dummy ];
+}
+dummy { background-color: @transparent; }
+
+/* ── Right Side: Info & Controls ── */
+listbox {
+    orientation:                 vertical;
+    children:                    [ message, listview ];
+    background-color:            @transparent;
+    spacing:                     10px;
+}
+
+message {
+    background-color:            @transparent;
+    padding:                     5px 0px 0px 0px;
+    border:                      0px;
+}
+
+textbox {
+    background-color:            @transparent;
+    text-color:                  @text;
+    padding:                     0px;
+    font:                        "JetBrainsMono Nerd Font 13";
+    markup:                      true;
+    vertical-align:              0.5;
+    horizontal-align:            0.0; /* Left-aligns text next to the image */
+}
+
+/* ── Controls Row (Using your exact styling) ── */
+listview {
+    background-color:            @transparent;
+    columns:                     3;
+    lines:                       1;
+    spacing:                     10px;
+    padding:                     5px 0px 0px 0px;
+    fixed-height:                true;
+    scrollbar:                   false;
+    border:                      0px;
+}
+
+element {
+    background-color:            @transparent;
+    border-radius:               12px;
+    padding:                     10px 0px;
+    orientation:                 horizontal;
+    cursor:                      pointer;
+}
+
+element normal.normal, element alternate.normal {
+    background-color:            @transparent;
+    text-color:                  @subtext;
+}
+
+element selected.normal {
+    background-color:            @surface-hover; /* Your custom hover color */
+    text-color:                  @accent;        /* Glowing Red-Purple */
+}
+
+element-text {
+    background-color:            @transparent;
+    text-color:                  inherit;
+    font:                        "JetBrainsMono Nerd Font 22";
+    horizontal-align:            0.5;
+    vertical-align:              0.5;
+    cursor:                      inherit;
+}

@@ -1,0 +1,59 @@
+
+/* Undertale Rofi Override */
+* {
+    font:                        "Terminess Nerd Font 16";
+    background:                  #000000;
+    background-alt:              #000000;
+    foreground:                  #ffffff;
+    selected:                    #ffffff;
+    active:                      #ffffff;
+    urgent:                      #ffffff;
+}
+
+window {
+    border-radius:               0px;
+    border: 1px;
+    border-color: #ffffff;
+}
+
+inputbar {
+    background-image:            none;
+    border: 1px;
+    border-color: #ffffff;
+    border-radius:               0px;
+}
+
+textbox-prompt-colon {
+    border-radius:               0px;
+}
+
+entry {
+    border-radius:               0px;
+}
+
+button {
+    border-radius:               0px;
+    border: 1px;
+    border-color: #ffffff;
+}
+button selected {
+    background-color:            #ffffff;
+    text-color:                  #000000;
+}
+
+element {
+    border-radius:               0px;
+}
+element selected.normal {
+    background-color:            #ffffff;
+    text-color:                  #000000;
+}
+element normal.active {
+    background-color:            #ffffff;
+    text-color:                  #000000;
+}
+error-message, textbox {
+    border-radius:               0px;
+    border: 1px;
+    border-color: #ffffff;
+}

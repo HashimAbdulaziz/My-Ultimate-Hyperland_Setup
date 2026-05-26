@@ -1,0 +1,62 @@
+# Adds a blank line between commands for a cleaner look
+add_newline = true
+
+# LEFT SIDE: Directory and active programming languages
+format = """
+$directory\
+$git_branch\
+$nodejs\
+$c\
+$java\
+$line_break\
+$character"""
+
+# RIGHT SIDE: Execution Status and Time Spent
+right_format = """
+$status\
+$cmd_duration"""
+
+[directory]
+# Deep Purple pill from your screenshot
+style = "bg:#7a00ff fg:#ffffff bold"
+format = "[](#7a00ff)[ $path ]($style)[](#7a00ff) "
+truncation_length = 3
+truncate_to_repo = false
+
+[status]
+disabled = false
+# Pill shapes are built directly into the symbols so they color perfectly
+format = "$symbol"
+success_symbol = "[](#12ff00)[ ✓ ](bg:#12ff00 fg:#000000 bold)[](#12ff00) "
+symbol = "[](#ff003c)[ ✘ $status ](bg:#ff003c fg:#ffffff bold)[](#ff003c) "
+
+[cmd_duration]
+# Set to 1 millisecond so it ALWAYS shows the time spent
+min_time = 1
+style = "bg:#f9e2af fg:#1e1e2e bold"
+format = "[](#f9e2af)[󱎫 $duration ]($style)[](#f9e2af)"
+
+[git_branch]
+symbol = " "
+style = "bg:#ff16b0 fg:#ffffff bold"
+format = "[](#ff16b0)[$symbol$branch ]($style)[](#ff16b0) "
+
+[nodejs]
+symbol = " "
+style = "bg:#12ff00 fg:#000000 bold"
+format = "[](#12ff00)[$symbol$version ]($style)[](#12ff00) "
+
+[c]
+symbol = " "
+style = "bg:#1ba6fa fg:#ffffff bold"
+format = "[](#1ba6fa)[$symbol$version ]($style)[](#1ba6fa) "
+
+[java]
+symbol = " "
+style = "bg:#ff5d00 fg:#ffffff bold"
+format = "[](#ff5d00)[$symbol$version ]($style)[](#ff5d00) "
+
+[character]
+# The curved arrow pointing exactly to where you type!
+success_symbol = "[ ╰─❯](#00e5ff bold)"
+error_symbol = "[ ╰─❯](#ff003c bold)"

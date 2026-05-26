@@ -1,0 +1,99 @@
+
+/* Undertale SwayNC Override */
+* {
+    font-family: "Terminess Nerd Font", monospace;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.control-center {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+
+.notification-row .notification-background {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+
+.notification-row .notification-background .notification {
+    background: #000000;
+    border-radius: 0;
+}
+
+.notification-row .notification-background .close-button {
+    background: #000000;
+    color: #ffffff;
+    border-radius: 0;
+    border: 1px solid #ffffff;
+}
+.notification-row .notification-background .close-button:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.control-center .widget-title {
+    color: #ffffff;
+}
+
+.control-center .widget-title > button {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+.control-center .widget-title > button:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.widget-dnd {
+    background: #000000;
+    color: #ffffff;
+    border-radius: 0;
+}
+.widget-dnd > switch {
+    border-radius: 0;
+    background: #000000;
+    border: 1px solid #ffffff;
+}
+.widget-dnd > switch:checked {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.widget-mpris {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+.widget-mpris .widget-mpris-player {
+    background: #000000;
+    border-radius: 0;
+}
+.widget-mpris .widget-mpris-title { color: #ffffff; }
+.widget-mpris .widget-mpris-subtitle { color: #ffffff; }
+
+.widget-volume, .widget-backlight {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+scale trough {
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+scale highlight {
+    background: #ffffff;
+    border-radius: 0;
+}
+scale slider {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+}
+

@@ -1,0 +1,263 @@
+{
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "height": 34,
+    "spacing": 0,
+
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "cpu",
+        "memory",
+        "temperature",
+        "disk",
+        "custom/updates",
+	"custom/todo"
+    ],
+    "modules-center": [
+        "custom/salah"
+    ],
+    "modules-right": [
+        "custom/cava",
+        "custom/music",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "custom/notifications",
+        "tray",
+        "clock",
+        "custom/weather",
+        "custom/clipboard",
+        "custom/power",
+        "custom/custom"
+    ],
+
+    "custom/launcher": {
+        "format": "{}",
+        "tooltip": true,
+        "exec": "echo '{\"text\":\"#M\",\"tooltip\":\"Menu\"}'",
+        "return-type": "json",
+        "on-click": "pkill rofi || rofi -show drun -theme ~/.config/rofi/type-7/style-1.rasi",
+        "on-click-right": "pkill rofi || rofi -show run -theme ~/.config/rofi/type-7/style-1.rasi"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-click": "activate"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": true,
+        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
+        "interval": 2
+    },
+
+    "memory": {
+        "format": "⛃ {}%",
+        "tooltip": true,
+        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
+        "interval": 2
+    },
+
+    "temperature": {
+        "critical-threshold": 40,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "tooltip": true,
+        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
+        "interval": 2
+    },
+
+    "disk": {
+        "format": " {percentage_used}% ({free})",
+        "tooltip": true,
+        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
+        "interval": 2
+    },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.scripts/updates",
+        "on-click": "~/.scripts/updates update",
+        "interval": 600,
+        "tooltip": true
+    },
+
+    "custom/salah": {
+        "exec": "~/.config/waybar/scripts/salah.py",
+        "return-type": "json",
+        "interval": 60,
+        "tooltip": true
+    },
+
+    "custom/music": {
+        "format": "{}",
+        "escape": true,
+        "tooltip": true,
+        "exec": "~/.scripts/caway -b 10 -e",
+        "return-type": "json",
+        "on-click": "~/.config/rofi/applets/bin/mac-music.sh",
+        "max-length": 35
+    },
+
+    "custom/cava": {
+        "format": "{}",
+        "exec": "cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/ /g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+        "on-click": "~/.config/rofi/applets/bin/mac-music.sh"
+    },
+
+    "hyprland/window": {
+        "icon": false,
+        "separate-outputs": true,
+        "max-length": 35
+    },
+
+   "network": {
+        "format": "{icon} ↕{bandwidthTotalBytes}",
+        "format-disconnected": "{icon} No Internet",
+        "format-linked": " {ifname} (No IP)",
+        "format-alt": "{icon} ↕{bandwidthUpBytes} | ↕{bandwidthDownBytes}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}  {gwaddr}",
+        "tooltip-format-wifi": "{icon} {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{icon} {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "{icon} Disconnected",
+        "on-click-right": "nm-connection-editor",
+        "format-icons": {
+            "ethernet": "",
+            "disconnected": "⚠",
+            "wifi": ["睊", "直"]
+        },
+        "interval": 2
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "~/.config/rofi/applets/bin/volume.sh",
+        "on-click-right": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "light -A 1",
+        "on-scroll-down": "light -U 1",
+        "interval": 2
+    },
+
+    "battery": {
+        "states": {
+            "good": 100,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-full": " {capacity}%",
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+        "interval": 2
+    },
+
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.15 && swaync-client -t -sw",
+        "on-click-right": "sleep 0.15 && swaync-client -d -sw",
+        "escape": true
+    },
+
+    "tray": {
+        "format": "{icon}",
+        "icon-size": 15,
+        "spacing": 15
+    },
+
+    "clock": {
+        "timezone": "Africa/Cairo",
+        "format": " {:%d <small>%a</small> %H:%M}",
+        "format-alt": " {:%A %B %d %Y (%V) | %r}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar-weeks-pos": "right",
+        "today-format": "<span color='#f38ba8'><b><u>{}</u></b></span>",
+        "format-calendar": "<span color='#f2cdcd'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#94e2d5'><b>W{:%U}</b></span>",
+        "format-calendar-weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+        "interval": 60
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "custom/weather": {
+        "tooltip": true,
+        "format": "{}",
+        "exec": "~/.scripts/tools/expand weather",
+        "return-type": "json"
+    },
+
+    "custom/ss": {
+        "format": "{}",
+        "exec": "echo '{\"text\":\"󰄀\",\"tooltip\":\"Screenshot\"}'",
+        "return-type": "json",
+        "on-click": "~/.config/rofi/applets/bin/screenshot.sh"
+    },
+
+    "custom/clipboard": {
+        "format": "{}",
+        "exec": "~/.scripts/tools/expand clipboard",
+        "return-type": "json",
+        "on-click": "clipman pick -t rofi",
+        "escape": true
+    },
+
+    "custom/power": {
+        "format": "{}",
+        "exec": "echo '{\"text\":\"⏻\",\"tooltip\":\"Power\"}'",
+        "return-type": "json",
+        "on-click": "~/.config/rofi/applets/bin/powermenu.sh"
+    },
+
+    "custom/custom": {
+        "format": "{}",
+        "exec": "~/.scripts/tools/expand arrow-icon",
+        "on-click": "~/.scripts/tools/expand_toolbar",
+        "return-type": "json"
+    },
+    "custom/todo": {
+        "exec": "~/.scripts/waybar-timer.sh",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "kitty --class task-manager env HIDE_FETCH=1 zsh -c 'clear; task; exec zsh'"
+    }
+}

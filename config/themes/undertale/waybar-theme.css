@@ -1,0 +1,217 @@
+/* ============================================================
+ * UNDERTALE WAYBAR THEME — Strict 1-Bit Monochrome
+ * Pure black background, pure white text, zero decoration.
+ * ============================================================ */
+
+/* ── Override ALL palette colors to monochrome ────────────── */
+@define-color base      #000000;
+@define-color mantle    #000000;
+@define-color crust     #000000;
+@define-color text      #ffffff;
+@define-color subtext0  #ffffff;
+@define-color subtext1  #ffffff;
+@define-color surface0  #000000;
+@define-color surface1  #000000;
+@define-color surface2  #000000;
+@define-color surface3  #000000;
+@define-color overlay0  #ffffff;
+@define-color overlay1  #ffffff;
+@define-color overlay2  #ffffff;
+@define-color blue      #ffffff;
+@define-color lavender  #ffffff;
+@define-color sapphire  #ffffff;
+@define-color sky       #ffffff;
+@define-color teal      #ffffff;
+@define-color green     #ffffff;
+@define-color yellow    #ffffff;
+@define-color peach     #ffffff;
+@define-color maroon    #ffffff;
+@define-color red       #ffffff;
+@define-color mauve     #ffffff;
+@define-color pink      #ffffff;
+@define-color flamingo  #ffffff;
+@define-color rosewater #ffffff;
+
+@define-color neon-cyan  #ffffff;
+@define-color neon-red   #ffffff;
+@define-color neon-pink  #ffffff;
+
+/* ── Override font to pixel bitmap ─────────────────────────── */
+* {
+  font-family: 'Terminess Nerd Font', monospace;
+  font-size:   14px;
+}
+
+/* ── Override hardcoded island backgrounds & borders ───────── */
+#custom-launcher, #workspaces, #window, #tray, #backlight, #clock, #battery,
+#pulseaudio, #network, #mpd, #cpu, #memory, #disk, #temperature,
+#custom-music, #custom-updates, #custom-nordvpn, #custom-notifications,
+#custom-power, #custom-custom, #custom-cycle_wall, #custom-clipboard,
+#custom-ss, #custom-salah, #custom-weather, #custom-todo {
+  background-color: #000000;
+  border:           1px solid #ffffff;
+  border-radius:    0;
+  box-shadow:       none;
+  color:            #ffffff;
+  text-shadow:      none;
+}
+
+/* ── Launcher: monochrome ─────────────────────────────────── */
+#custom-launcher {
+  color:        #ffffff;
+  background:   #000000;
+  border-color: #ffffff;
+  text-shadow:  none;
+}
+#custom-launcher:hover {
+  background:   #ffffff;
+  color:        #000000;
+  border-color: #ffffff;
+  text-shadow:  none;
+  box-shadow:   none;
+}
+
+/* ── Workspaces: white on black, inverted active ──────────── */
+#workspaces button {
+  color:         #ffffff;
+  background:    transparent;
+  border-radius: 0;
+}
+#workspaces button.active {
+  color:      #000000;
+  background: #ffffff;
+  box-shadow: none;
+  text-shadow: none;
+}
+#workspaces button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.2);
+  color:      #ffffff;
+}
+#workspaces button.urgent {
+  background: #ffffff;
+  color:      #000000;
+  box-shadow: none;
+}
+
+/* ── System stats pill: flatten ───────────────────────────── */
+#cpu, #memory, #temperature, #disk {
+  border-radius: 0;
+  color:         #ffffff;
+  text-shadow:   none;
+  border:        1px solid #ffffff;
+}
+#cpu {
+  border-top-left-radius:    0;
+  border-bottom-left-radius: 0;
+}
+#disk {
+  border-top-right-radius:    0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+}
+
+/* ── Hardware pill: flatten ───────────────────────────────── */
+#network, #pulseaudio, #backlight, #battery {
+  color:       #ffffff;
+  text-shadow: none;
+  border:      1px solid #ffffff;
+}
+#battery { box-shadow: none; }
+#battery.critical:not(.charging) {
+  color:      #ffffff;
+  text-shadow: none;
+}
+#temperature.critical {
+  color:       #ffffff;
+  text-shadow: none;
+}
+
+/* ── Clock ────────────────────────────────────────────────── */
+#clock {
+  color:       #ffffff;
+  background:  #000000;
+  border-color: #ffffff;
+}
+
+/* ── Salah ────────────────────────────────────────────────── */
+#custom-salah {
+  background:   #000000;
+  border:       1px solid #ffffff;
+  border-radius: 0;
+  color:        #ffffff;
+  box-shadow:   none;
+}
+
+/* ── Music & Cava ─────────────────────────────────────────── */
+#custom-music.Playing {
+  background:   #000000;
+  border-color: #ffffff;
+  color:        #ffffff;
+  box-shadow:   none;
+  animation:    none;
+}
+#custom-cava {
+  color: #ffffff;
+}
+
+/* ── Todo active state ────────────────────────────────────── */
+#custom-todo.active {
+  color:        #ffffff;
+  background:   #000000;
+  border-color: #ffffff;
+  box-shadow:   none;
+  text-shadow:  none;
+}
+
+/* ── Power ────────────────────────────────────────────────── */
+#custom-power {
+  color:        #ffffff;
+  background:   #000000;
+  border-color: #ffffff;
+  border-radius: 0;
+}
+#custom-power:hover {
+  background:  #ffffff;
+  color:       #000000;
+  box-shadow:  none;
+  text-shadow: none;
+}
+
+/* ── Tray ─────────────────────────────────────────────────── */
+#tray {
+  background:    #000000;
+  border:        1px solid #ffffff;
+  border-radius: 0;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────── */
+tooltip {
+  background:    #000000;
+  border:        1px solid #ffffff;
+  border-radius: 0;
+  box-shadow:    none;
+}
+
+/* ── Kill all hover glows ─────────────────────────────────── */
+#custom-launcher:hover, #workspaces:hover, #clock:hover,
+#custom-updates:hover, #custom-clipboard:hover, #custom-ss:hover,
+#custom-power:hover, #custom-notifications:hover, #custom-todo:hover {
+  border-color: #ffffff;
+  box-shadow:   none;
+}
+#custom-updates:hover, #custom-clipboard:hover, #custom-ss:hover,
+#custom-nordvpn.connected {
+  background:   #000000;
+  border-color: #ffffff;
+}
+
+/* ── Disable all animations (GTK CSS compatible syntax) ───── */
+@keyframes music-pulse {
+  0%   { box-shadow: none; }
+  50%  { box-shadow: none; }
+  100% { box-shadow: none; }
+}
+@keyframes blink {
+  0%   { opacity: 1; }
+  100% { opacity: 1; }
+}

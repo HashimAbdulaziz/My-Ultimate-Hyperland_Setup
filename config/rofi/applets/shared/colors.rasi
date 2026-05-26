@@ -1,0 +1,8 @@
+* {
+    background:                  rgba(30, 30, 46, 0.60);  /* Dark transparent glass base */
+    background-alt:              rgba(49, 50, 68, 0.70);  /* Slightly lighter glass */
+    foreground:                  #cdd6f4;                 /* Catppuccin Text */
+    selected:                    #cba6f7;                 /* Mauve Purple Highlight */
+    active:                      #a6e3a1;                 /* Soft Green */
+    urgent:                      #f38ba8;                 /* Soft Red */
+}

@@ -1,0 +1,89 @@
+/* ============================================================
+   mac-applet.rasi — Universal Dynamic Island Theme
+   For Volume, Power, Brightness, etc.
+   ============================================================ */
+
+configuration {
+    show-icons:                  false;
+    font:                        "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    bg:             #0d0d14f0;
+    bg-alt:         #13131efa;
+    surface:        #1a1a2a;
+    surface-hover:  #222235;
+    accent:         #e6457b;
+    accent-dim:     #e6457b55;
+    text:           #cdd6f4;
+    subtext:        #a6adc8;
+    border-col:     #e6457b44;
+    transparent:    #00000000;
+}
+
+window {
+    transparency:                "real";
+    background-color:            @bg;
+    border:                      1px solid;
+    border-color:                @border-col;
+    border-radius:               18px;
+    width:                       520px;
+    y-offset:                    56px;   /* Drops perfectly below Waybar */
+    location:                    north;
+    anchor:                      north;
+}
+
+mainbox {
+    background-color:            @transparent;
+    children:                    [ message, listview ];
+    padding:                     18px;
+    spacing:                     20px;
+}
+
+message {
+    background-color:            @transparent;
+    padding:                     0px;
+}
+
+textbox {
+    background-color:            @transparent;
+    text-color:                  @text;
+    font:                        "JetBrainsMono Nerd Font 14";
+    markup:                      true;
+    vertical-align:              0.5;
+    horizontal-align:            0.5; /* Centered for standard menus */
+}
+
+listview {
+    background-color:            @transparent;
+    layout:                      horizontal;
+    spacing:                     12px;
+    lines:                       6;   /* Allows up to 6 buttons side-by-side */
+    fixed-columns:               true;
+}
+
+element {
+    background-color:            @transparent;
+    border-radius:               12px;
+    padding:                     15px 10px;
+    cursor:                      pointer;
+}
+
+element normal.normal, element alternate.normal {
+    background-color:            @transparent;
+    text-color:                  @subtext;
+}
+
+element selected.normal {
+    background-color:            @surface-hover;
+    text-color:                  @accent;
+}
+
+element-text {
+    background-color:            @transparent;
+    text-color:                  inherit;
+    font:                        "JetBrainsMono Nerd Font 22";
+    horizontal-align:            0.5;
+    vertical-align:              0.5;
+    cursor:                      inherit;
+}

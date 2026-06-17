@@ -1,62 +1,105 @@
-# Adds a blank line between commands for a cleaner look
-add_newline = true
+# ╔══════════════════════════════════════════════════════════╗
+# ║  CYBERPUNK STARSHIP — Modern macOS / iTerm2 aesthetic    ║
+# ║  Two-line prompt · Nerd Font optional · Clean & bold     ║
+# ╚══════════════════════════════════════════════════════════╝
 
-# LEFT SIDE: Directory and active programming languages
+add_newline = false
+
+# ── Layout ───────────────────────────────────────────────────
+# Line 1: ╭─ [user] in [dir]  on [branch]  [langs]
+# Line 2: ╰─❯  (cyan=ok, red=error)
 format = """
+$line_break\
+[╭─](fg:#555555)\
+$username\
 $directory\
 $git_branch\
+$git_status\
 $nodejs\
 $c\
 $java\
+$fill\
+$cmd_duration\
+$time\
 $line_break\
-$character"""
+[╰─❯](fg:#00e5ff bold) \
+"""
 
-# RIGHT SIDE: Execution Status and Time Spent
-right_format = """
-$status\
-$cmd_duration"""
+# RIGHT prompt empty — everything lives on the top bar
+right_format = "$status"
 
+# ── Username (only shown when not default user) ────────────────
+[username]
+show_always = false
+style_user  = "fg:#888888"
+style_root  = "fg:#ff003c bold"
+format      = "[$user](fg:#888888) in "
+
+# ── Directory ────────────────────────────────────────────────
 [directory]
-# Deep Purple pill from your screenshot
-style = "bg:#7a00ff fg:#ffffff bold"
-format = "[](#7a00ff)[ $path ]($style)[](#7a00ff) "
+style            = "fg:#00e5ff bold"
+format           = "[$path]($style) "
 truncation_length = 3
-truncate_to_repo = false
+truncate_to_repo  = false
+truncation_symbol = "…/"
+read_only         = " 🔒"
 
-[status]
-disabled = false
-# Pill shapes are built directly into the symbols so they color perfectly
-format = "$symbol"
-success_symbol = "[](#12ff00)[ ✓ ](bg:#12ff00 fg:#000000 bold)[](#12ff00) "
-symbol = "[](#ff003c)[ ✘ $status ](bg:#ff003c fg:#ffffff bold)[](#ff003c) "
-
-[cmd_duration]
-# Set to 1 millisecond so it ALWAYS shows the time spent
-min_time = 1
-style = "bg:#f9e2af fg:#1e1e2e bold"
-format = "[](#f9e2af)[󱎫 $duration ]($style)[](#f9e2af)"
-
+# ── Git Branch ───────────────────────────────────────────────
 [git_branch]
-symbol = " "
-style = "bg:#ff16b0 fg:#ffffff bold"
-format = "[](#ff16b0)[$symbol$branch ]($style)[](#ff16b0) "
+symbol = " "
+style  = "fg:#ff16b0"
+format = "on [$symbol$branch]($style) "
 
+# ── Git Status (inline dirty/ahead/behind indicators) ────────
+[git_status]
+style    = "fg:#ffea16"
+format   = "([$all_status$ahead_behind]($style) )"
+conflicted = "⚡"
+ahead      = "↑${count}"
+behind     = "↓${count}"
+diverged   = "↕${ahead_count}↓${behind_count}"
+untracked  = "?"
+modified   = "~"
+staged     = "+"
+deleted    = "✘"
+
+# ── Language modules ─────────────────────────────────────────
 [nodejs]
-symbol = " "
-style = "bg:#12ff00 fg:#000000 bold"
-format = "[](#12ff00)[$symbol$version ]($style)[](#12ff00) "
+symbol = ""
+style  = "fg:#12ff00"
+format = "[node $version]($style) "
 
 [c]
-symbol = " "
-style = "bg:#1ba6fa fg:#ffffff bold"
-format = "[](#1ba6fa)[$symbol$version ]($style)[](#1ba6fa) "
+symbol = ""
+style  = "fg:#1ba6fa"
+format = "[c $version]($style) "
 
 [java]
-symbol = " "
-style = "bg:#ff5d00 fg:#ffffff bold"
-format = "[](#ff5d00)[$symbol$version ]($style)[](#ff5d00) "
+symbol = ""
+style  = "fg:#ff5d00"
+format = "[java $version]($style) "
 
-[character]
-# The curved arrow pointing exactly to where you type!
-success_symbol = "[ ╰─❯](#00e5ff bold)"
-error_symbol = "[ ╰─❯](#ff003c bold)"
+# ── Fill (pushes time to the right on line 1) ────────────────
+[fill]
+symbol = " "
+style  = "fg:#1a1a1a"
+
+# ── Clock (top-right of line 1) ──────────────────────────────
+[time]
+disabled  = false
+style     = "fg:#555555"
+format    = "[$time]($style)"
+time_format = "%H:%M"
+
+# ── Command Duration ─────────────────────────────────────────
+[cmd_duration]
+min_time = 500
+style    = "fg:#f9e2af"
+format   = "[$duration]($style) "
+
+# ── Status (right prompt — only shown on error) ──────────────
+[status]
+disabled       = false
+format         = "$symbol"
+success_symbol = ""
+symbol         = "[✘$status](fg:#ff003c bold)"

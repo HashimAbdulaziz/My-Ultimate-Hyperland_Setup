@@ -1,0 +1,11 @@
+[general]
+framerate = 30
+bars = 12
+; go idle (≈0% CPU) after 5s of silence; wakes instantly when audio resumes
+sleep_timer = 5
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7

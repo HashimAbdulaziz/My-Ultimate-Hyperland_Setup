@@ -1,0 +1,98 @@
+/* ============================================================
+ *  Hashim's favourites dock — horizontal icon launcher
+ *  A row of large app icons. Click one (or type to filter) to launch.
+ * ============================================================ */
+configuration {
+    show-icons:   true;
+    dpi:          0;
+}
+
+* {
+    font:        "JetBrainsMono Nerd Font 11";
+    bg:          rgba(20, 20, 32, 0.70);
+    bg-alt:      rgba(203, 166, 247, 0.16);
+    fg:          #cdd6f4;
+    fg-dim:      #9399b2;
+    accent:      #cba6f7;
+    transparent: rgba(0, 0, 0, 0);
+}
+
+window {
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    width:            640px;
+    border-radius:    26px;
+    background-color: @bg;
+    cursor:           "default";
+}
+
+mainbox {
+    spacing:          16px;
+    padding:          26px 24px;
+    background-color: @transparent;
+    children:         [ "inputbar", "listview" ];
+}
+
+/* slim search/title bar */
+inputbar {
+    spacing:          10px;
+    padding:          0px 4px 4px 4px;
+    background-color: @transparent;
+    children:         [ "prompt", "entry" ];
+}
+prompt {
+    background-color: @accent;
+    text-color:       #11111b;
+    padding:          7px 12px;
+    border-radius:    10px;
+}
+entry {
+    background-color: rgba(49, 50, 68, 0.55);
+    text-color:       @fg;
+    padding:          7px 14px;
+    border-radius:    10px;
+    placeholder:      "Search apps…";
+    placeholder-color:@fg-dim;
+    cursor:           text;
+}
+
+/* one centred row of big icons */
+listview {
+    columns:          5;
+    lines:            1;
+    fixed-columns:    true;
+    cycle:            true;
+    scrollbar:        false;
+    spacing:          10px;
+    background-color: @transparent;
+}
+
+element {
+    orientation:      vertical;
+    spacing:          12px;
+    padding:          18px 6px;
+    border-radius:    18px;
+    background-color: @transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+}
+element selected.normal {
+    background-color: @bg-alt;
+    border:           1px;
+    border-color:     rgba(203, 166, 247, 0.45);
+    text-color:       #ffffff;
+}
+element-icon {
+    size:             58px;
+    background-color: @transparent;
+    cursor:           inherit;
+    horizontal-align: 0.5;
+}
+element-text {
+    background-color: @transparent;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+    cursor:           inherit;
+}

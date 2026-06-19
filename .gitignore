@@ -1,0 +1,16 @@
+# backups
+*.bak
+*.bak-*
+*.orig
+*~
+
+# caches / generated
+*.log
+*.pyc
+__pycache__/
+.DS_Store
+
+# anything that smells like a secret (belt and suspenders)
+*.token
+*.secret
+.env

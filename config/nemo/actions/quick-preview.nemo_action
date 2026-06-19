@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Quick Look
+Comment=Preview the selected file in a popup
+Exec=<"/home/hashim/.local/share/nemo/scripts/quick-preview.sh" %F>
+Selection=s
+Extensions=any;
+Icon-Name=xapp-preview-symbolic
+Quote=double

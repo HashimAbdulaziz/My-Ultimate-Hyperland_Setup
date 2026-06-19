@@ -69,15 +69,19 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 
--- ─── NVIDIA FORCE RENDERING ───
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
+-- ─── GPU: INTEL-PRIMARY RENDERING ───
+-- Both displays are wired to the Intel iGPU; the MUX + Hyprland auto-detection
+-- pick Intel as the primary renderer. Do NOT inject AQ_DRM_DEVICES /
+-- WLR_DRM_DEVICES here: hardcoded DRM device paths make Aquamarine abort
+-- (SIGABRT / "IOT instruction core dumped"). NVIDIA-forcing vars stay disabled
+-- (LIBVA=nvidia also breaks HW video decode — no nvidia-vaapi-driver installed,
+-- so the working Intel iHD driver is used instead).
 hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-
--- (Depending on Hyprland version, it uses either AQ or WLR for the backend. Adding both is perfectly safe).
-hl.env("AQ_DRM_DEVICES", "/dev/dri/card0:/dev/dri/card1")
-hl.env("WLR_DRM_DEVICES", "/dev/dri/card0:/dev/dri/card1")
+-- hl.env("LIBVA_DRIVER_NAME", "nvidia")
+-- hl.env("GBM_BACKEND", "nvidia-drm")
+-- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+-- hl.env("AQ_DRM_DEVICES", ...)   -- never hardcode; crashes Aquamarine
+-- hl.env("WLR_DRM_DEVICES", ...)  -- never hardcode; crashes Aquamarine
 
 
 -----------------------

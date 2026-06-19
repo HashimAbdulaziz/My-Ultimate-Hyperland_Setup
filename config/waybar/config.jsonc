@@ -25,6 +25,7 @@
         "custom/cava",
         "custom/music",
         "network",
+        "bluetooth",
         "pulseaudio",
         "backlight",
         "battery",
@@ -40,10 +41,10 @@
     "custom/launcher": {
         "format": "{}",
         "tooltip": true,
-        "exec": "echo '{\"text\":\"#M\",\"tooltip\":\"Menu\"}'",
+        "exec": "echo '{\"text\":\"#M\",\"tooltip\":\"Apps  —  left: favourites · right: all apps\"}'",
         "return-type": "json",
-        "on-click": "pkill rofi || rofi -show drun -theme ~/.config/rofi/type-7/style-1.rasi",
-        "on-click-right": "pkill rofi || rofi -show run -theme ~/.config/rofi/type-7/style-1.rasi"
+        "on-click": "pkill rofi || bash ~/.config/rofi/widgets/launcher.sh",
+        "on-click-right": "pkill rofi || rofi -show drun -theme ~/.config/rofi/launcher/type-7/style-1.rasi"
     },
 
     "hyprland/workspaces": {
@@ -81,7 +82,7 @@
         "format": " {percentage_used}% ({free})",
         "tooltip": true,
         "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
-        "interval": 2
+        "interval": 30
     },
 
     "custom/updates": {
@@ -130,6 +131,7 @@
         "tooltip-format-wifi": "{icon} {essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "{icon} {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "{icon} Disconnected",
+        "on-click": "pkill rofi || bash ~/.config/rofi/widgets/wifi.sh",
         "on-click-right": "nm-connection-editor",
         "format-icons": {
             "ethernet": "",
@@ -137,6 +139,19 @@
             "wifi": ["睊", "直"]
         },
         "interval": 2
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "format-on": "󰂯",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\t{status}",
+        "tooltip-format-connected": "{controller_alias}\t{status}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "pkill rofi || bash ~/.config/rofi/widgets/bluetooth.sh",
+        "on-click-right": "blueman-manager"
     },
 
     "pulseaudio": {
@@ -148,15 +163,17 @@
             "headset": "",
             "default": ["", "", ""]
         },
-        "on-click": "~/.config/rofi/applets/bin/volume.sh",
-        "on-click-right": "pavucontrol"
+        "on-click": "pkill rofi || bash ~/.config/rofi/widgets/audio.sh",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     },
 
     "backlight": {
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-up": "light -A 1",
-        "on-scroll-down": "light -U 1",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
         "interval": 2
     },
 
@@ -172,7 +189,7 @@
         "format-alt": "{icon} {time}",
         "format-full": " {capacity}%",
         "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-        "interval": 2
+        "interval": 5
     },
 
     "custom/notifications": {
@@ -257,7 +274,7 @@
     "custom/todo": {
         "exec": "~/.scripts/waybar-timer.sh",
         "return-type": "json",
-        "interval": 1,
+        "interval": 2,
         "on-click": "kitty --class task-manager env HIDE_FETCH=1 zsh -c 'clear; task; exec zsh'"
     }
 }

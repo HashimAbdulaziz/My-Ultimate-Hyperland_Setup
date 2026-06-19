@@ -1,0 +1,112 @@
+/* ============================================================
+ *  Hashim's shared widget theme — Catppuccin glass (vertical list)
+ *  Used by: wifi.sh · bluetooth.sh · audio.sh
+ *  Blur is applied by Hyprland (layerrule = blur, rofi).
+ * ============================================================ */
+configuration {
+    show-icons:   true;
+    dpi:          0;
+}
+
+* {
+    font:        "JetBrainsMono Nerd Font 11";
+    bg:          rgba(20, 20, 32, 0.66);   /* glass base                */
+    bg-alt:      rgba(49, 50, 68, 0.55);   /* row hover / chips         */
+    fg:          #cdd6f4;                  /* text                      */
+    fg-dim:      #9399b2;                  /* secondary text            */
+    accent:      #cba6f7;                  /* mauve selection           */
+    on:          #a6e3a1;                  /* connected / active green  */
+    off:         #f38ba8;                  /* error / disconnected red  */
+    transparent: rgba(0, 0, 0, 0);
+}
+
+window {
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    width:            460px;
+    border-radius:    20px;
+    background-color: @bg;
+    cursor:           "default";
+}
+
+mainbox {
+    spacing:          0px;
+    padding:          14px;
+    background-color: @transparent;
+    children:         [ "inputbar", "message", "listview" ];
+}
+
+inputbar {
+    spacing:          10px;
+    padding:          6px 8px 14px 8px;
+    background-color: @transparent;
+    text-color:       @fg;
+    children:         [ "prompt", "entry" ];
+}
+prompt {
+    background-color: @accent;
+    text-color:       #11111b;
+    padding:          8px 12px;
+    border-radius:    10px;
+    font:             "JetBrainsMono Nerd Font 12";
+}
+entry {
+    background-color: @bg-alt;
+    text-color:       @fg;
+    padding:          8px 14px;
+    border-radius:    10px;
+    placeholder:      "Search…";
+    placeholder-color:@fg-dim;
+    cursor:           text;
+}
+
+message {
+    padding:          0px 2px 10px 2px;
+    background-color: @transparent;
+}
+textbox {
+    background-color: @bg-alt;
+    text-color:       @fg-dim;
+    padding:          8px 12px;
+    border-radius:    10px;
+    horizontal-align: 0.0;
+}
+
+listview {
+    lines:            8;
+    columns:          1;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+    spacing:          4px;
+    background-color: @transparent;
+}
+
+element {
+    spacing:          12px;
+    padding:          10px 12px;
+    border-radius:    12px;
+    background-color: @transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+}
+element selected.normal {
+    background-color: @bg-alt;
+    text-color:       @fg;
+    border:           1px;
+    border-color:     rgba(203, 166, 247, 0.45);
+}
+element-icon {
+    size:             26px;
+    background-color: @transparent;
+    cursor:           inherit;
+    vertical-align:   0.5;
+}
+element-text {
+    background-color: @transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0.0;
+    cursor:           inherit;
+}

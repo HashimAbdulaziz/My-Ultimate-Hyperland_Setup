@@ -16,7 +16,8 @@
         "temperature",
         "disk",
         "custom/updates",
-	"custom/todo"
+	"custom/todo",
+        "custom/leetcode"
     ],
     "modules-center": [
         "custom/salah"
@@ -34,6 +35,7 @@
         "clock",
         "custom/weather",
         "custom/clipboard",
+        "custom/recorder",
         "custom/power",
         "custom/custom"
     ],
@@ -189,7 +191,9 @@
         "format-alt": "{icon} {time}",
         "format-full": " {capacity}%",
         "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-        "interval": 5
+        "interval": 5,
+        "on-click": "~/.scripts/power-mode.sh menu",
+        "tooltip-format": "{capacity}%  ·  click for power modes"
     },
 
     "custom/notifications": {
@@ -258,6 +262,14 @@
         "escape": true
     },
 
+    "custom/recorder": {
+        "exec": "~/.scripts/screen-record.sh status",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "~/.scripts/screen-record.sh toggle",
+        "on-click-right": "~/.scripts/screen-record.sh pause-toggle"
+    },
+
     "custom/power": {
         "format": "{}",
         "exec": "echo '{\"text\":\"⏻\",\"tooltip\":\"Power\"}'",
@@ -276,5 +288,14 @@
         "return-type": "json",
         "interval": 2,
         "on-click": "kitty --class task-manager env HIDE_FETCH=1 zsh -c 'clear; task; exec zsh'"
+    },
+
+    "custom/leetcode": {
+        "exec": "~/.scripts/leetcode-daily.sh status",
+        "return-type": "json",
+        "interval": 120,
+        "signal": 9,
+        "on-click": "~/.scripts/leetcode-daily.sh open",
+        "on-click-right": "~/.scripts/leetcode-daily.sh solved"
     }
 }

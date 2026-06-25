@@ -1,0 +1,84 @@
+/* ============================================================
+ *  Power slider — 3 glassy segments: Low | Balanced | Max
+ *  Low opacity on purpose: Hyprland blurs the rofi layer, so the
+ *  desktop frosts THROUGH the panel = liquid glass. No purple.
+ * ============================================================ */
+configuration {
+    show-icons: false;
+}
+
+* {
+    font:        "JetBrainsMono Nerd Font 12";
+    glass:       rgba(12, 13, 20, 0.42);    /* panel: very see-through → frosted */
+    seg:         rgba(255, 255, 255, 0.045); /* segment: faint frost            */
+    seg-on:      rgba(255, 255, 255, 0.14);  /* selected: brighter frost        */
+    edge:        rgba(255, 255, 255, 0.10);
+    cyan:        rgba(0, 229, 255, 0.55);    /* selection accent (theme cyan)   */
+    fg:          #eef2ff;
+    fg-dim:      #8b93a7;
+    transparent: rgba(0, 0, 0, 0);
+}
+
+window {
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    width:            820px;
+    border:           1px;
+    border-color:     @edge;
+    border-radius:    22px;
+    background-color: @glass;
+    cursor:           "default";
+}
+
+mainbox {
+    spacing:          18px;
+    padding:          24px 26px;
+    background-color: @transparent;
+    children:         [ "message", "listview" ];
+}
+
+message {
+    padding:          2px 4px 6px 4px;
+    background-color: @transparent;
+}
+textbox {
+    background-color: @transparent;
+    text-color:       @fg-dim;
+    font:             "JetBrainsMono Nerd Font 11";
+    horizontal-align: 0.0;
+}
+
+/* three equal segments side by side = the slider track */
+listview {
+    columns:          3;
+    lines:            1;
+    fixed-columns:    true;
+    cycle:            true;
+    scrollbar:        false;
+    spacing:          14px;
+    background-color: @transparent;
+}
+
+element {
+    padding:          22px 10px;
+    border-radius:    14px;
+    border:           1px;
+    border-color:     @transparent;
+    background-color: @seg;
+    text-color:       @fg;
+    cursor:           pointer;
+}
+element selected.normal {
+    background-color: @seg-on;
+    border:           2px;
+    border-color:     @cyan;
+    text-color:       #ffffff;
+}
+element-text {
+    background-color: @transparent;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+    cursor:           inherit;
+}

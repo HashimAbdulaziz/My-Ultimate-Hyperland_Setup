@@ -226,10 +226,68 @@ person who has been burned before, because it is.
 
 ---
 
+## Changelog
+
+Every entry is something I actually use daily. Nothing gets added because it
+looked cool in a screenshot. If it does not survive a week of real use, it gets
+deleted. These entries did.
+
+---
+
+### 2026-06-25 — Smart Tools Update (feat/smart-tools)
+
+**QR Code Scanner** (`SUPER+SHIFT+Q`)
+Snip any area of the screen, zbar decodes the QR. Handles both normal and
+inverted (white-on-dark) codes automatically. If the URL goes through an ad
+redirect (like me-qr.com), it parses the HTML and jumps straight to the real
+destination — no "watch an ad to continue" nonsense.
+Dependencies: `zbarimg`, `grim`, `slurp`, `imagemagick`
+
+**OCR Text Extractor** (`SUPER+SHIFT+X`)
+Snip any text on screen — PDF in a browser, video subtitle, photo, anything —
+and it lands on your clipboard. Auto-detects dark/light backgrounds and inverts
+accordingly. Upscales 3× before feeding to Tesseract so it actually reads
+screen-resolution text instead of guessing. Supports Arabic + English in the
+same snip.
+Dependencies: `tesseract`, `tesseract-langpack-ara`, `grim`, `slurp`, `imagemagick`
+
+**Screen Recorder** (`SUPER+CTRL+SHIFT+R` start/stop · `SUPER+CTRL+SHIFT+P` pause)
+Records a selected area to `~/Videos/`. Audio comes from the output monitor
+(what you hear through your device) — not the mic. Video and audio are captured
+as separate processes and merged with ffmpeg on stop so neither one blocks the
+other from finalizing cleanly. Waybar shows a pulsing red `● REC` while active
+and a yellow `⏸ REC` when paused. Left-click the indicator to stop, right-click
+to pause/resume.
+Dependencies: `wf-recorder`, `parecord`, `ffmpeg`, `grim`, `slurp`
+
+**LeetCode Daily Challenge** (Waybar, left of the clock group)
+Shows today's challenge number and title next to the task timer. Pulses red
+until solved. Clicks open the problem in Chrome. Auto-detects completion by
+reading your Chrome session cookie (decrypted via gnome-keyring) and querying
+the LeetCode API — no manual "mark as done." Turns solid green within 2 minutes
+of your submission being accepted.
+Dependencies: `python3-secretstorage`, `python3-cryptography`, `curl`
+
+**Power Mode Slider** (click the battery icon)
+Three-segment rofi slider: Low / Balanced / Max. Shows estimated runtime per
+mode next to each option. Self-calibrates by measuring real wattage
+(`current_now × voltage_now`) while on battery — the longer you use it unplugged,
+the more accurate the numbers get. Low mode dims the screen to 20% and kills
+blur/shadows/animations. Max mode turns everything back on.
+
+**Keybind fixes in this update:**
+- `SUPER+SHIFT+C` → Cyberpunk theme (was `SUPER+SHIFT+Q`, which clashed with the QR scanner)
+- `SUPER+SHIFT+X` → OCR extract (X = eXtract, easy to remember)
+- `SUPER+CTRL+SHIFT+R` → Record toggle
+- `SUPER+CTRL+SHIFT+P` → Record pause/resume
+
+---
+
 ## Author
 
 **Hashim Abdulaziz**
+[linkedin.com/in/hashim-abdulaziz](https://www.linkedin.com/in/hashim-abdulaziz/)
 
-A reflection of a personal computing philosophy that can be summarized as: tile
-everything, overlap nothing, and never reach for the mouse if a key will do. The
-neon is non-negotiable.
+They call me Hashing. A reflection of a personal computing philosophy that can
+be summarized as: tile everything, overlap nothing, and never reach for the mouse
+if a key will do. The neon is non-negotiable.

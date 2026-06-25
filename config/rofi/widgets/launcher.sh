@@ -8,7 +8,7 @@ THEME="$HOME/.config/rofi/widgets/applauncher.rasi"
 # label | icon-name | launch command
 FAVS=(
     "Code|vscode|code"
-    "Chrome|google-chrome|google-chrome"
+    "Chrome|google-chrome|/home/hashim/.local/bin/google-chrome"
     "Terminal|kitty|kitty"
     "Obsidian|md.obsidian.Obsidian|flatpak run md.obsidian.Obsidian"
     "WhatsApp|com.ktechpit.whatsie|flatpak run com.ktechpit.whatsie"

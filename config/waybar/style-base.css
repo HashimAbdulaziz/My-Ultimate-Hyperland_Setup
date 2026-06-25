@@ -393,6 +393,30 @@
    ══════════════════════════════════════════════════════════ */
 #custom-todo { color: @subtext1; font-weight: 600; }
 
+/* ── LeetCode daily challenge ───────────────────────────────── */
+#custom-leetcode {
+  font-weight:   700;
+  padding:       0 10px;
+  border-radius: 13px;
+}
+#custom-leetcode.unsolved {
+  color:        #f38ba8;
+  background:   rgba(243, 139, 168, 0.10);
+  border-color: rgba(243, 139, 168, 0.30);
+  box-shadow:   0 0 8px rgba(243, 139, 168, 0.45);
+  animation:    leet-pulse 1.5s ease-in-out infinite alternate;
+}
+#custom-leetcode.solved {
+  color:        #a6e3a1;
+  background:   rgba(166, 227, 161, 0.10);
+  border-color: rgba(166, 227, 161, 0.25);
+  animation:    none;
+}
+@keyframes leet-pulse {
+  0%   { opacity: 1; }
+  100% { opacity: 0.45; }
+}
+
 #custom-todo.active {
   color:        @neon-red;
   /* Dark, frosted glass with a very slight red tint for readability */
@@ -431,6 +455,31 @@
 /* ══════════════════════════════════════════════════════════
    POWER — rightmost, red neon
    ══════════════════════════════════════════════════════════ */
+/* ── Screen recorder indicator ──────────────────────────────── */
+#custom-recorder { color: transparent; padding: 0; min-width: 0; }
+
+#custom-recorder.recording {
+  color:         #f38ba8;
+  font-weight:   700;
+  padding:       0 10px;
+  border-radius: 13px;
+  background:    rgba(243, 139, 168, 0.10);
+  border-color:  rgba(243, 139, 168, 0.25);
+  animation:     rec-blink 1.2s ease-in-out infinite alternate;
+}
+#custom-recorder.paused {
+  color:         #f9e2af;
+  font-weight:   700;
+  padding:       0 10px;
+  border-radius: 13px;
+  background:    rgba(249, 226, 175, 0.10);
+  border-color:  rgba(249, 226, 175, 0.25);
+}
+@keyframes rec-blink {
+  0%   { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
 #custom-power {
   color:         @neon-red;
   padding:       0 13px;
